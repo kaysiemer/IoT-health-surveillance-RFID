@@ -1,0 +1,2 @@
+# IoT-health-surveillance-RFID
+Dieses Verzeichnis dient der Speicherung des erstellten Programmcodes für das Produkt "IoT – health surveillance RFID". Durch die öffentliche Zugänglichkeit sollen eine Transparenz und Nachvollziehbarkeit des Programmcodes hergestellt werden. Autoren des Codes sind die Mitglieder des Team 5 aus dem Studienjahrgang 2018 des Studiengang Wirtschaftsingenieurwesen der Dualen Hochschule Baden-Württemberg Stuttgart.
