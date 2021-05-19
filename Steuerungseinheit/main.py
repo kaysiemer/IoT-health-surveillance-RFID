@@ -1,6 +1,6 @@
 # Project:  health surveillance system
 # Authors:  Nils Dedner / Timm Buchholz / Kay Siemer
-# Date:     Last updated 30.04.2021
+# Date:     Last updated 19.05.2021
 # Version:  V1.0
 # Python 3.8.2 64-bit
 
@@ -10,7 +10,7 @@ from mqtt.mqtt import mqtt
 from mqtt.mqttDhbw import mqttDhbw
 import RPi.GPIO as GPIO
 import time
-import datetime
+from datetime import datetime, timedelta
 import telepot
 from emoji import emojize
 
@@ -70,10 +70,13 @@ while True:
     CO2Timestamp = answer[0][0]
     print(CO2Timestamp)
     # print(fAnzahlPersonen)
-    print(datetime.datetime.now()-datetime.datetime.timdelta(minutes= 3)
     # MQTT-Kommunikation überprüfen
-    if (CO2Timestamp >(datetime.datetime.now() - 300)): # Letzte MQTT-Kommunikation länger als XY (?) Minuten her
+    if (CO2Timestamp >(datetime.now() - timedelta(minutes=3))): # Letzte MQTT-Kommunikation länger als XY (?) Minuten her
+    	print(datetime.now()-timedelta(minutes= 3))
+    # MQTT-Kommunikation überprüfen
+    if (CO2Timestamp >=(datetime.now())): #Letzte MQTT-Kommunikation länger als XY (?) Minuten her
         ErrorFlag = 1
+        print("Error")
     else:
         ErrorFlag = 0
     
@@ -102,7 +105,7 @@ while True:
 
     if (timeNowFE <= time.time()):
         fanStatusTable = "table_fan_status(`timestamp`, fan_status)"
-        fanStatuslValues = "NOW(), '{val}'".format(val=Gefaehrdungspotenzial)
+        fanStatuslValues = "NOW(), '{val}'".format(val=FanEnabled)
         piSql2.insertData(fanStatusTable, fanStatuslValues)
         timeNowFE = time.time() + 20
     # Berechnung des Gefaehrdungspotenzials:
@@ -195,7 +198,3 @@ while True:
     if (timeNowTeleNote <= time.time()):
         bot.sendMessage(-599483576, 'Schützen Sie sich und Ihre Mitmenschen: Regelmäßig lüften, Abstand halten, Hygiene beachten, im Alltag Maske tragen und Corona-Warn-App nutzen!')
         timeNowTeleNote = time.time() + 900
-    
-    # Next steps:
-    #   - Prüfung MQTT Kommunikation (Z. 68)
-    #   - Steuerung Lüfter über Web-API
