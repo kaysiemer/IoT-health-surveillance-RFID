@@ -185,16 +185,16 @@ while True:
     # Prüfung, ob Fehler in der MQTT-Kommunikation
     if (ErrorFlag == 1):
         if (timeNowTeleError <= time.time()):
-            bot.sendMessage(-599483576, 'WARNUNG: Störung in der MQTT-Kommunikation des health surveillance systems! Es können keine zuverlässigen Aussagen über die Gefährungslage im überwachten Raum getroffen werden. Zu Ihrer Sicherheit wurde der Lüfter aktiviert.')
+            bot.sendMessage(-1001464919769, 'WARNUNG: Störung in der MQTT-Kommunikation des health surveillance systems! Es können keine zuverlässigen Aussagen über die Gefährungslage im überwachten Raum getroffen werden. Zu Ihrer Sicherheit wurde der Lüfter aktiviert.')
             timeNowTeleError = time.time() + 60
     # Ansonsten normaler Betrieb
     else:
         # Voraussetzung: Gefährdungspotenzial >= 3
         if ((Gefaehrdungspotenzial >= 3) and (timeNowTele <= time.time())):
-            bot.sendMessage(-599483576, emojize(':police_car_light: Achtung: Das aktuelle Gefährungspotenzial beträgt: {}'.format(Gefaehrdungspotenzial), use_aliases=True))
+            bot.sendMessage(-1001464919769, emojize(':police_car_light: Achtung: Das aktuelle Gefährungspotenzial beträgt: {}'.format(Gefaehrdungspotenzial), use_aliases=True))
             timeNowTele = time.time() + 60
 
     # Regelmäßiger Lüftungshinweise über Telegram
     if (timeNowTeleNote <= time.time()):
-        bot.sendMessage(-599483576, 'Schützen Sie sich und Ihre Mitmenschen: Regelmäßig lüften, Abstand halten, Hygiene beachten, im Alltag Maske tragen und Corona-Warn-App nutzen!')
+        bot.sendMessage(-1001464919769, 'Schützen Sie sich und Ihre Mitmenschen: Regelmäßig lüften, Abstand halten, Hygiene beachten, im Alltag Maske tragen und Corona-Warn-App nutzen!')
         timeNowTeleNote = time.time() + 900
