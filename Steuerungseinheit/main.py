@@ -175,7 +175,7 @@ while True:
         riskPotentialTable = "iot.table_risk_potential ( iot.table_risk_potential.`timestamp`, iot.table_risk_potential.risk_potential)"
         riskPotentialValues = "NOW(), '{val}'".format(val=Gefaehrdungspotenzial)
         piSql2.insertData(riskPotentialTable, riskPotentialValues)
-        timeNowRP = time.time() + 20
+        timeNowRP = time.time() + 5
     
     # Sensorwerte & Gefährdungspotential per MQTT an DHBW-Server weiterleiten
     if (timeNowDh <= time.time()):
