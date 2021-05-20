@@ -88,17 +88,18 @@ while True:
         GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # Relais 2 an
     # Ansonsten normaler Betrieb
     else:
-        if ((CO2Gehalt >= 1600 and Fensterstellung == 0) or LuefterManuell == 1): 
+        #print("looped")
+        if ((CO2Gehalt >= 1600 and Fensterstellung == 1) or LuefterManuell == 1): 
             GPIO.output(RELAIS_1_GPIO, GPIO.LOW) # Relais 1 an
             GPIO.output(RELAIS_2_GPIO, GPIO.LOW) # Relais 2 an
             FanEnabled = 2
             print("Relais Stufe 2")
-        elif (CO2Gehalt < 1600 and CO2Gehalt >= 1200 and Fensterstellung == 0):
+        elif (CO2Gehalt < 1600 and CO2Gehalt >= 1200 and Fensterstellung == 1):
             GPIO.output(RELAIS_1_GPIO, GPIO.LOW)  # Relais 1 an
             GPIO.output(RELAIS_2_GPIO, GPIO.HIGH) # Relais 2 aus
             print("Relais Stufe 1")
             FanEnabled = 1
-        elif (CO2Gehalt < 900 or Fensterstellung == 1):
+        elif (CO2Gehalt < 900 or Fensterstellung == 0):
             GPIO.output(RELAIS_1_GPIO, GPIO.HIGH) # beide Relais aus
             FanEnabled = 0
             print("Relais aus")
