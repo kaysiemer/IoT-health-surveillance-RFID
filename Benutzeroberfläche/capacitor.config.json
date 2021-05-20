@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "IOT",
+  "appId": "com.iotdigitalisator",
+  "appName": "Digitalisator",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "dist",

@@ -33,7 +33,7 @@ import LineDiagrammTile from './LineDiagramm/LineDiagramm.vue'
 export default {
     created(){
         this.refreshData()
-        setInterval(this.refreshData, 5000)
+        setInterval(this.refreshData, 2000)
     },
     components:{
         IonRow,
@@ -54,21 +54,21 @@ export default {
     },
     methods: {
         getRiskPotentialStatus(){
-            this.$http.get("http://192.168.65.20:3000/riskPotential/status").then((response) => {
+            this.$http.get("http://be450b9bbd87.sn.mynetname.net:3000/riskPotential/status").then((response) => {
                 //console.log(response.data)
                 this.riskPotential = response.data.response[0].risk_potential
                 //console.log(this.riskPotential)
             })
         },
         getPeopleInRoom(){
-            this.$http.get("http://192.168.65.20:3000/peopleInRoom/status").then((response) => {
+            this.$http.get("http://be450b9bbd87.sn.mynetname.net:3000/peopleInRoom/status").then((response) => {
                 //console.log(response.data)
                 this.peopleInRoom = response.data.response[0].people
                 //console.log(this.riskPotential)
             })
         },
         getWindowStatus(){
-            this.$http.get("http://192.168.65.20:3000/window/status").then((response) => {
+            this.$http.get("http://be450b9bbd87.sn.mynetname.net:3000/window/status").then((response) => {
                 //console.log(response.data)
                 this.windowStatus = response.data.response[0].window_status
                 //console.log(this.windowStatus)

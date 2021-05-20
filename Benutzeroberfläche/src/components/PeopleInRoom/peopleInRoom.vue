@@ -11,12 +11,12 @@ export default {
     props: ['peopleInRoom'],
     data(){
         return{
-            people: " Personen"
+            people: " Pers."
         }
     }
 }
 </script>
-<style>
+<style scoped>
 .wrapper{
     background-color: grey;
     width: 100%;
@@ -42,8 +42,7 @@ button{
     width: 100%;
     color: #494949 !important;
     text-transform: uppercase;
-    font-size: 25px;
-	text-decoration: none;
+    font-size: 4vw;
 	background:  var(--ion-color-primary-contrast);
 	border: 4px solid var(--ion-color-dark-tint) ;
 	display: inline-block;

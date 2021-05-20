@@ -2,15 +2,13 @@
     <div class="wrapper">
         <ion-grid style=""> 
             <ion-row>
-                <ion-col size="5">
-                    <button id="btn1" @click="toggleBtn" >
-                        {{fanStatus}}
-                    </button>
-                </ion-col>
-                <ion-col size="2">
-                    <div class="divider"> </div>
-                </ion-col>
-                <ion-col size="5">
+                <button id="btn1" @click="toggleBtn" >
+                    {{fanStatus}}
+                </button>
+            </ion-row>
+            <ion-row>
+                <ion-col size="2"></ion-col>
+                <ion-col size="8">
                     <button :disabled="btnFanState" @click="toggleFan" class="btn">
                         <fan-status :key="fanData" :color="fanColor" :active="fanMode"> </fan-status>    
                     </button>
@@ -25,7 +23,7 @@ import {IonGrid,IonRow, IonCol} from '@ionic/vue'
 export default {
     created(){
         this.getFanStatus()
-        setInterval(this.getFanStatus, 5000)
+        setInterval(this.getFanStatus, 2000)
         //setInterval(this.test(), 3000)
     },
     components:{
@@ -67,18 +65,18 @@ export default {
             }
         },
         setFanManuellStatus(FanStatus){
-            this.$http.get("http://192.168.65.20:3000/fan/setStatus",{ params: { status: FanStatus } }).then(console.log("Fan Status: " + FanStatus))
+            this.$http.get("http://be450b9bbd87.sn.mynetname.net:3000/fan/setStatus",{ params: { status: FanStatus } }).then(console.log("Fan Status: " + FanStatus))
         },
         getFanStatus(){
             if (this.fanStatus == "A"){
-                this.$http.get("http://192.168.65.20:3000/fan/getStatus").then((response) => {
+                this.$http.get("http://be450b9bbd87.sn.mynetname.net:3000/fan/getStatus").then((response) => {
                 console.log(response.data)
                 this.fanData = response.data.response[0].fan_status
                 console.log(this.fanData)
             })
             }
             else if(this.fanStatus == "M"){
-                this.$http.get("http://192.168.65.20:3000/fan/getManuellStatus").then((response) => {
+                this.$http.get("http://be450b9bbd87.sn.mynetname.net:3000/fan/getManuellStatus").then((response) => {
                 console.log(response.data)
                 this.fanData = response.data.response[0].fan_status
                 console.log(this.fanData)
@@ -122,11 +120,8 @@ export default {
 .divider{
     left: 40%;
     width: 20%;
-    height: 80%;
+    height: 100%;
     border-left: medium solid black;
-    position: absolute;
-    z-index: 2;
-    
 }
 .center {
   margin: auto;
@@ -149,11 +144,10 @@ button{
     width: 100%;
     color: #494949 !important;
     text-transform: uppercase;
-    font-size: 25px;
-	text-decoration: none;
+    font-size: 7vw;
+    text-align: center;
 	background:  var(--ion-color-primary-contrast);
 	border: 4px solid var(--ion-color-dark-tint) ;
-	display: inline-block;
 	transition: all 0.4s ease 0s;
 }
 button:active{

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Digitalisator</string>
+    <string name="title_activity_main">Digitalisator</string>
+    <string name="package_name">com.iotdigitalisator</string>
+    <string name="custom_url_scheme">com.iotdigitalisator</string>
+</resources>

@@ -1,11 +1,9 @@
 <template>
-    <v-flex>
         <GChart
         type="LineChart"
         :data="chartData"
         :options="chartOptions"
         /> 
-    </v-flex>
 </template>
 <script>
 import {GChart} from 'vue-google-charts'
@@ -15,7 +13,7 @@ export default {
     },
     created(){
         this.getChartData()
-        //(setInterval(this.getChartData, 5000)
+        setInterval(this.getChartData, 60000)
     },
     data(){
         return {
@@ -34,7 +32,6 @@ export default {
                     textStyle:{color: '#ffffff'}
                 },
                 lineWidth: 3,
-                height: 400,
                 animation: {
                     startup: true,
                     duration: 500,
@@ -45,8 +42,7 @@ export default {
                     backgroundColor: "#ffffff",
                     right: '15%',
                     left: '15%',
-                    top: '9%',
-                    height: '100%',
+                    top: '13%',
                     bottom: '9%'
                 },
                 colors:['orange', '#3880ff', '#FF4500', '#76EE00'],
@@ -60,7 +56,7 @@ export default {
                             years: {format: ['yyyy']},
                             months: {format:['dd.MM']},
                             days: {format:['dd.MM']},
-                            hours: {format:['']}
+                            hours: {format:['hh:mm a']}
                         }
                     },
                     minorGridlines:{
@@ -105,11 +101,13 @@ export default {
     methods:{
         getChartData(){
             console.log(this.chartData[0])
-            this.$http.get("http://192.168.65.20:3000/diagramm/data").then((response) => {
+            this.chartData.length = 2
+            this.$http.get("http://be450b9bbd87.sn.mynetname.net:3000/diagramm/data").then((response) => {
                 //console.log(response.data.response[0].timestamp)
                 for (var i = 0; i<=Object.keys(response.data.response).length-1; i++){
                     this.chartData.push([new Date(response.data.response[i].timestamp), response.data.response[i].co2, response.data.response[i].humidity, response.data.response[i].airpressur, response.data.response[i].temperature])
                 }
+                this.chartData.splice(1,1)
                 console.log("ChartData")
                 console.log(this.chartData)
             })
